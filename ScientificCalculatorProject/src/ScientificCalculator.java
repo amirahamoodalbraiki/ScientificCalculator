@@ -144,6 +144,37 @@ public class ScientificCalculator {
         }
     }
 
+    // ===== ROUNDING FUNCTIONS =====
+    public static double roundNumber(double num) {
+        return Math.round(num);
+    }
+
+    public static double ceilNumber(double num) {
+        return Math.ceil(num);
+    }
+
+    public static double floorNumber(double num) {
+        return Math.floor(num);
+    }
+
+    private static void performRound(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        System.out.println("Rounded: " + roundNumber(num));
+    }
+
+    private static void performCeil(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        System.out.println("Ceiling: " + ceilNumber(num));
+    }
+
+    private static void performFloor(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        System.out.println("Floor: " + floorNumber(num));
+    }
+
     // ===== INPUT UTILITY =====
     private static double[] getTwoNumbers(Scanner scanner) {
         double[] nums = new double[2];
@@ -173,6 +204,9 @@ public class ScientificCalculator {
         System.out.println("9.  Tangent");
         System.out.println("10. Natural Logarithm");
         System.out.println("11. Logarithm Base 10");
+        System.out.println("12. Round");
+        System.out.println("13. Ceil");
+        System.out.println("14. Floor");
         System.out.println("0.  Exit");
     }
 
@@ -197,6 +231,9 @@ public class ScientificCalculator {
                 case 9 -> performTangent(scanner);
                 case 10 -> performNaturalLog(scanner);
                 case 11 -> performLogBase10(scanner);
+                case 12 -> performRound(scanner);
+                case 13 -> performCeil(scanner);
+                case 14 -> performFloor(scanner);
                 case 0 -> System.out.println("Calculator closed.");
                 default -> System.out.println("Invalid choice!");
             }
