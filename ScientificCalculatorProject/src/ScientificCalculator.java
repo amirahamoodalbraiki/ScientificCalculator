@@ -50,6 +50,34 @@ public class ScientificCalculator {
         }
     }
 
+    // ===== SQUARE ROOT & POWER =====
+
+    public static double calculateSquareRoot(double a) {
+        if (a < 0) {
+            throw new ArithmeticException("Cannot take square root of negative number");
+        }
+        return Math.sqrt(a);
+    }
+
+    public static double calculatePower(double base, double exponent) {
+        return Math.pow(base, exponent);
+    }
+
+    private static void performSquareRoot(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        try {
+            System.out.println("Result: " + calculateSquareRoot(num));
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void performPower(Scanner scanner) {
+        double[] nums = getTwoNumbers(scanner);
+        System.out.println("Result: " + calculatePower(nums[0], nums[1]));
+    }
+
     // ===== INPUT UTILITY =====
 
     private static double[] getTwoNumbers(Scanner scanner) {
@@ -74,6 +102,8 @@ public class ScientificCalculator {
         System.out.println("2.  Subtract");
         System.out.println("3.  Multiply");
         System.out.println("4.  Divide");
+        System.out.println("5.  Square Root");
+        System.out.println("6.  Power");
         System.out.println("0.  Exit");
     }
 
@@ -91,6 +121,8 @@ public class ScientificCalculator {
                 case 2 -> performSubtraction(scanner);
                 case 3 -> performMultiplication(scanner);
                 case 4 -> performDivision(scanner);
+                case 5 -> performSquareRoot(scanner);
+                case 6 -> performPower(scanner);
                 case 0 -> System.out.println("Calculator closed.");
                 default -> System.out.println("Invalid choice!");
             }
