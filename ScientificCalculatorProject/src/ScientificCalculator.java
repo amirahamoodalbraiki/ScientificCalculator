@@ -23,6 +23,33 @@ public class ScientificCalculator {
         System.out.println("Result: " + subtract(nums[0], nums[1]));
     }
 
+    // ===== MULTIPLICATION & DIVISION =====
+
+    public static double multiply(double a, double b) {
+        return a * b;
+    }
+
+    public static double divide(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return a / b;
+    }
+
+    private static void performMultiplication(Scanner scanner) {
+        double[] nums = getTwoNumbers(scanner);
+        System.out.println("Result: " + multiply(nums[0], nums[1]));
+    }
+
+    private static void performDivision(Scanner scanner) {
+        double[] nums = getTwoNumbers(scanner);
+        try {
+            System.out.println("Result: " + divide(nums[0], nums[1]));
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     // ===== INPUT UTILITY =====
 
     private static double[] getTwoNumbers(Scanner scanner) {
@@ -45,6 +72,8 @@ public class ScientificCalculator {
         System.out.println("\n--- SCIENTIFIC CALCULATOR MENU ---");
         System.out.println("1.  Add");
         System.out.println("2.  Subtract");
+        System.out.println("3.  Multiply");
+        System.out.println("4.  Divide");
         System.out.println("0.  Exit");
     }
 
@@ -60,6 +89,8 @@ public class ScientificCalculator {
             switch (choice) {
                 case 1 -> performAddition(scanner);
                 case 2 -> performSubtraction(scanner);
+                case 3 -> performMultiplication(scanner);
+                case 4 -> performDivision(scanner);
                 case 0 -> System.out.println("Calculator closed.");
                 default -> System.out.println("Invalid choice!");
             }
