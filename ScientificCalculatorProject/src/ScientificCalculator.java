@@ -155,17 +155,9 @@ public class ScientificCalculator {
     }
 
     // ===== ABS, MIN, MAX =====
-    public static double absolute(double num) {
-        return Math.abs(num);
-    }
-
-    public static double minimum(double a, double b) {
-        return Math.min(a, b);
-    }
-
-    public static double maximum(double a, double b) {
-        return Math.max(a, b);
-    }
+    public static double absolute(double num) { return Math.abs(num); }
+    public static double minimum(double a, double b) { return Math.min(a, b); }
+    public static double maximum(double a, double b) { return Math.max(a, b); }
 
     private static void performAbsolute(Scanner scanner) {
         System.out.print("Enter number: ");
@@ -200,25 +192,17 @@ public class ScientificCalculator {
 
     // ===== MENU =====
     public static void displayMenu() {
-        System.out.println("\n--- SCIENTIFIC CALCULATOR MENU ---");
-        System.out.println("1.  Add");
-        System.out.println("2.  Subtract");
-        System.out.println("3.  Multiply");
-        System.out.println("4.  Divide");
-        System.out.println("5.  Square Root");
-        System.out.println("6.  Power");
-        System.out.println("7.  Sine");
-        System.out.println("8.  Cosine");
-        System.out.println("9.  Tangent");
-        System.out.println("10. Natural Logarithm");
-        System.out.println("11. Log Base 10");
-        System.out.println("12. Round");
-        System.out.println("13. Ceil");
-        System.out.println("14. Floor");
-        System.out.println("15. Absolute");
-        System.out.println("16. Minimum");
-        System.out.println("17. Maximum");
-        System.out.println("0.  Exit");
+        System.out.println("\n========= SCIENTIFIC CALCULATOR =========");
+        System.out.println(" 1.  Add\t\t10. Natural Log");
+        System.out.println(" 2.  Subtract\t\t11. Log Base 10");
+        System.out.println(" 3.  Multiply\t\t12. Round");
+        System.out.println(" 4.  Divide\t\t13. Ceil");
+        System.out.println(" 5.  Square Root\t14. Floor");
+        System.out.println(" 6.  Power\t\t15. Absolute");
+        System.out.println(" 7.  Sine\t\t16. Minimum");
+        System.out.println(" 8.  Cosine\t\t17. Maximum");
+        System.out.println(" 9.  Tangent\t\t0.  Exit");
+        System.out.println("=========================================");
     }
 
     public static void main(String[] args) {
@@ -228,6 +212,10 @@ public class ScientificCalculator {
         do {
             displayMenu();
             System.out.print("Choose an option: ");
+            while (!scanner.hasNextInt()) {
+                System.out.print("Invalid input. Enter a number: ");
+                scanner.next();
+            }
             choice = scanner.nextInt();
 
             switch (choice) {
@@ -248,8 +236,8 @@ public class ScientificCalculator {
                 case 15 -> performAbsolute(scanner);
                 case 16 -> performMin(scanner);
                 case 17 -> performMax(scanner);
-                case 0 -> System.out.println("Calculator closed.");
-                default -> System.out.println("Invalid choice!");
+                case 0 -> System.out.println("Thank you for using the calculator!");
+                default -> System.out.println("Invalid choice! Try again.");
             }
         } while (choice != 0);
 
