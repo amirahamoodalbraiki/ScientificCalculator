@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class ScientificCalculator {
 
     // ===== ADDITION & SUBTRACTION =====
-
     public static double add(double a, double b) {
         return a + b;
     }
@@ -24,7 +23,6 @@ public class ScientificCalculator {
     }
 
     // ===== MULTIPLICATION & DIVISION =====
-
     public static double multiply(double a, double b) {
         return a * b;
     }
@@ -51,7 +49,6 @@ public class ScientificCalculator {
     }
 
     // ===== SQUARE ROOT & POWER =====
-
     public static double calculateSquareRoot(double a) {
         if (a < 0) {
             throw new ArithmeticException("Cannot take square root of negative number");
@@ -78,8 +75,45 @@ public class ScientificCalculator {
         System.out.println("Result: " + calculatePower(nums[0], nums[1]));
     }
 
-    // ===== INPUT UTILITY =====
+    // ===== TRIGONOMETRIC FUNCTIONS =====
+    public static double calculateSine(double degrees) {
+        return Math.sin(Math.toRadians(degrees));
+    }
 
+    public static double calculateCosine(double degrees) {
+        return Math.cos(Math.toRadians(degrees));
+    }
+
+    public static double calculateTangent(double degrees) {
+        if ((degrees % 180) == 90) {
+            throw new ArithmeticException("Tangent undefined at " + degrees + " degrees");
+        }
+        return Math.tan(Math.toRadians(degrees));
+    }
+
+    private static void performSine(Scanner scanner) {
+        System.out.print("Enter angle in degrees: ");
+        double degrees = scanner.nextDouble();
+        System.out.println("Result: " + calculateSine(degrees));
+    }
+
+    private static void performCosine(Scanner scanner) {
+        System.out.print("Enter angle in degrees: ");
+        double degrees = scanner.nextDouble();
+        System.out.println("Result: " + calculateCosine(degrees));
+    }
+
+    private static void performTangent(Scanner scanner) {
+        System.out.print("Enter angle in degrees: ");
+        double degrees = scanner.nextDouble();
+        try {
+            System.out.println("Result: " + calculateTangent(degrees));
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    // ===== INPUT UTILITY =====
     private static double[] getTwoNumbers(Scanner scanner) {
         double[] nums = new double[2];
         try {
@@ -95,7 +129,6 @@ public class ScientificCalculator {
     }
 
     // ===== MAIN & MENU =====
-
     public static void displayMenu() {
         System.out.println("\n--- SCIENTIFIC CALCULATOR MENU ---");
         System.out.println("1.  Add");
@@ -104,6 +137,9 @@ public class ScientificCalculator {
         System.out.println("4.  Divide");
         System.out.println("5.  Square Root");
         System.out.println("6.  Power");
+        System.out.println("7.  Sine");
+        System.out.println("8.  Cosine");
+        System.out.println("9.  Tangent");
         System.out.println("0.  Exit");
     }
 
@@ -123,6 +159,9 @@ public class ScientificCalculator {
                 case 4 -> performDivision(scanner);
                 case 5 -> performSquareRoot(scanner);
                 case 6 -> performPower(scanner);
+                case 7 -> performSine(scanner);
+                case 8 -> performCosine(scanner);
+                case 9 -> performTangent(scanner);
                 case 0 -> System.out.println("Calculator closed.");
                 default -> System.out.println("Invalid choice!");
             }
