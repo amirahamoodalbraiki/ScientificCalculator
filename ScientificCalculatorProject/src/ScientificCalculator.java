@@ -113,6 +113,37 @@ public class ScientificCalculator {
         }
     }
 
+    // ===== LOGARITHMIC FUNCTIONS =====
+    public static double calculateNaturalLogarithm(double num) {
+        if (num <= 0) throw new ArithmeticException("Natural log undefined for non-positive numbers");
+        return Math.log(num);
+    }
+
+    public static double calculateLogarithmBase10(double num) {
+        if (num <= 0) throw new ArithmeticException("Log base 10 undefined for non-positive numbers");
+        return Math.log10(num);
+    }
+
+    private static void performNaturalLog(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        try {
+            System.out.println("Result: " + calculateNaturalLogarithm(num));
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void performLogBase10(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        try {
+            System.out.println("Result: " + calculateLogarithmBase10(num));
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     // ===== INPUT UTILITY =====
     private static double[] getTwoNumbers(Scanner scanner) {
         double[] nums = new double[2];
@@ -140,6 +171,8 @@ public class ScientificCalculator {
         System.out.println("7.  Sine");
         System.out.println("8.  Cosine");
         System.out.println("9.  Tangent");
+        System.out.println("10. Natural Logarithm");
+        System.out.println("11. Logarithm Base 10");
         System.out.println("0.  Exit");
     }
 
@@ -162,6 +195,8 @@ public class ScientificCalculator {
                 case 7 -> performSine(scanner);
                 case 8 -> performCosine(scanner);
                 case 9 -> performTangent(scanner);
+                case 10 -> performNaturalLog(scanner);
+                case 11 -> performLogBase10(scanner);
                 case 0 -> System.out.println("Calculator closed.");
                 default -> System.out.println("Invalid choice!");
             }
