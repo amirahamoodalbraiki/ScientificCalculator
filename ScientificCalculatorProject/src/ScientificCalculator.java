@@ -4,13 +4,8 @@ import java.util.Scanner;
 public class ScientificCalculator {
 
     // ===== ADDITION & SUBTRACTION =====
-    public static double add(double a, double b) {
-        return a + b;
-    }
-
-    public static double subtract(double a, double b) {
-        return a - b;
-    }
+    public static double add(double a, double b) { return a + b; }
+    public static double subtract(double a, double b) { return a - b; }
 
     private static void performAddition(Scanner scanner) {
         double[] nums = getTwoNumbers(scanner);
@@ -23,14 +18,9 @@ public class ScientificCalculator {
     }
 
     // ===== MULTIPLICATION & DIVISION =====
-    public static double multiply(double a, double b) {
-        return a * b;
-    }
-
+    public static double multiply(double a, double b) { return a * b; }
     public static double divide(double a, double b) {
-        if (b == 0) {
-            throw new ArithmeticException("Cannot divide by zero");
-        }
+        if (b == 0) throw new ArithmeticException("Cannot divide by zero");
         return a / b;
     }
 
@@ -50,9 +40,7 @@ public class ScientificCalculator {
 
     // ===== SQUARE ROOT & POWER =====
     public static double calculateSquareRoot(double a) {
-        if (a < 0) {
-            throw new ArithmeticException("Cannot take square root of negative number");
-        }
+        if (a < 0) throw new ArithmeticException("Cannot take square root of negative number");
         return Math.sqrt(a);
     }
 
@@ -85,9 +73,8 @@ public class ScientificCalculator {
     }
 
     public static double calculateTangent(double degrees) {
-        if ((degrees % 180) == 90) {
+        if ((degrees % 180) == 90)
             throw new ArithmeticException("Tangent undefined at " + degrees + " degrees");
-        }
         return Math.tan(Math.toRadians(degrees));
     }
 
@@ -145,17 +132,9 @@ public class ScientificCalculator {
     }
 
     // ===== ROUNDING FUNCTIONS =====
-    public static double roundNumber(double num) {
-        return Math.round(num);
-    }
-
-    public static double ceilNumber(double num) {
-        return Math.ceil(num);
-    }
-
-    public static double floorNumber(double num) {
-        return Math.floor(num);
-    }
+    public static double roundNumber(double num) { return Math.round(num); }
+    public static double ceilNumber(double num) { return Math.ceil(num); }
+    public static double floorNumber(double num) { return Math.floor(num); }
 
     private static void performRound(Scanner scanner) {
         System.out.print("Enter number: ");
@@ -175,6 +154,35 @@ public class ScientificCalculator {
         System.out.println("Floor: " + floorNumber(num));
     }
 
+    // ===== ABS, MIN, MAX =====
+    public static double absolute(double num) {
+        return Math.abs(num);
+    }
+
+    public static double minimum(double a, double b) {
+        return Math.min(a, b);
+    }
+
+    public static double maximum(double a, double b) {
+        return Math.max(a, b);
+    }
+
+    private static void performAbsolute(Scanner scanner) {
+        System.out.print("Enter number: ");
+        double num = scanner.nextDouble();
+        System.out.println("Absolute: " + absolute(num));
+    }
+
+    private static void performMin(Scanner scanner) {
+        double[] nums = getTwoNumbers(scanner);
+        System.out.println("Minimum: " + minimum(nums[0], nums[1]));
+    }
+
+    private static void performMax(Scanner scanner) {
+        double[] nums = getTwoNumbers(scanner);
+        System.out.println("Maximum: " + maximum(nums[0], nums[1]));
+    }
+
     // ===== INPUT UTILITY =====
     private static double[] getTwoNumbers(Scanner scanner) {
         double[] nums = new double[2];
@@ -190,7 +198,7 @@ public class ScientificCalculator {
         return nums;
     }
 
-    // ===== MAIN & MENU =====
+    // ===== MENU =====
     public static void displayMenu() {
         System.out.println("\n--- SCIENTIFIC CALCULATOR MENU ---");
         System.out.println("1.  Add");
@@ -203,10 +211,13 @@ public class ScientificCalculator {
         System.out.println("8.  Cosine");
         System.out.println("9.  Tangent");
         System.out.println("10. Natural Logarithm");
-        System.out.println("11. Logarithm Base 10");
+        System.out.println("11. Log Base 10");
         System.out.println("12. Round");
         System.out.println("13. Ceil");
         System.out.println("14. Floor");
+        System.out.println("15. Absolute");
+        System.out.println("16. Minimum");
+        System.out.println("17. Maximum");
         System.out.println("0.  Exit");
     }
 
@@ -234,6 +245,9 @@ public class ScientificCalculator {
                 case 12 -> performRound(scanner);
                 case 13 -> performCeil(scanner);
                 case 14 -> performFloor(scanner);
+                case 15 -> performAbsolute(scanner);
+                case 16 -> performMin(scanner);
+                case 17 -> performMax(scanner);
                 case 0 -> System.out.println("Calculator closed.");
                 default -> System.out.println("Invalid choice!");
             }
